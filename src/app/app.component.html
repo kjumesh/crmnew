@@ -1,0 +1,116 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="main_header">
+  <div class="container-fluid ">
+    <div class="tabbable-panel col-md-12 col-lg-12 col-xs-12 col-sm-12">
+      <div class="tabbable-line">
+        <a CLASS="logo" href="">
+          <img src="https://peppybooks.com/img/logo.png">
+        </a>
+        <ul class="pull-right high_menu">
+          <!-- <button mat-button>
+            <a routerLink="/home" routerLinkActive="active">Home </a>
+          </button> -->
+          <button mat-button>
+            <a routerLink="/home" routerLinkActive="active">Logout </a>
+          </button>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="tabbable-panel col-md-12 col-lg-12 col-xs-12 col-sm-12">
+      <div class="tabbable-line" id="nav-main">
+        <ul class="" id="main">
+          <li routerLinkActive="active">
+            <a routerLink="/home">Home
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/accounts">Accounts
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/contacts">Contacts
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/leads">Leads
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/opportunities">Opportunities
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/calendar">Calendar
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/dashboards">Dashboards
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/tasks">Tasks
+              <i class="arrow down"></i>
+            </a>
+          </li>
+
+          <li routerLinkActive="active">
+            <a routerLink="/campaigns">Campaigns
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/email">email
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/reports">Reports
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/asset">Assests
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/case">Cases
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/contract">Contract
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/product">Product
+              <i class="arrow down"></i>
+            </a>
+          </li>
+          <li class="more" data-width="80">
+            <a href="#" class="drop_menu_btn">More
+              <i class="arrow down"></i>
+            </a>
+            <ul class="more_menus"></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main_body">
+  <div class="body_inner">
+    <router-outlet></router-outlet>
+  </div>
+</div>

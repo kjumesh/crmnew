@@ -1,0 +1,159 @@
+<!--Contract Page-->
+
+
+<div class="buttonHeader pull-right">
+  <div class="buttonNew" (click)="open(content)">New</div>
+  <!-- <div class="buttonImport">Import</div> -->
+</div>
+<p>&nbsp;</p>
+<!-- *****Contract Table***** -->
+<b>Contracts</b>
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize"
+  [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
+</pagination>
+
+<!--********Contract Starts*********-->
+<ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+  <div class="close-btn-container pos-abs">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">New Contract</h4>
+  </div>
+  <div class="modal-body">
+    <div class="extra-pad">
+      <div class="">
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Contract Owner</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Contract Number</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Contract Term(months)</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Account Name</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Owner Expiration Notice</label>
+          <select class="form-control" id="expirationNotice" name="expirationNotice">
+            <option value="">--None--</option>
+            <option value="15Days">15 Days</option>
+            <option value="30Days">30 Days</option>
+            <option value="45Days">45 Days</option>
+            <option value="60Days">60 Days</option>
+            <option value="90Days">90 Days</option>
+            <option value="120Days">120 Days</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Status</label>
+          <select class="form-control" id="status" name="status">
+            <option value="">--None--</option>
+            <option value="InApprovalProcess">In Approval Process</option>
+            <option value="Activated">Activated</option>
+            <option value="Draft">Draft</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Price Book</label>
+          <input type="textbox" class="form-control">
+        </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <b>Address Information</b> <br>
+                        <label for="name">Billing Address</label>
+                        <input type="textbox" class="form-control" placeholder="Search Address">
+                    </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing Street</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing City</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing State/Province</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing ZipCode/Postal Code</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing Country</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label for="name">Shipping Address</label>
+                        <input type="textbox" class="form-control" placeholder="Search Address">
+                    </div>
+                <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <label for="name">Shipping Street</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping City</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping State/Province</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping ZipCode/Postal Code</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping Country</label>
+                    <input type="textbox" class="form-control">
+                </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <b class="pull-left">Description Information</b>
+          <label for="name">Special Terms</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <b class="pull-left">Signature Information</b>
+        <p>&nbsp;</p>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Customer Signed By</label>
+          <input type="textbox" class="form-control" placeholder="Search Contacts..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Company Signed By</label>
+          <input type="textbox" class="form-control"placeholder="Search People..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Customer Signed Title</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Company Signed Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Customer Signed Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="btnSave">
+      <i class="fa fa-check-circle"></i>Save</button>
+    <button type="button" class="btn btn-default" id="btnCancel" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>

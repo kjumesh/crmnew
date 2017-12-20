@@ -1,0 +1,96 @@
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop .fade .in {
+  opacity: 0.5 !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+}
+
+.buttonNew {
+  /* margin-right: 20pc; */
+  display: inline-block;
+  color: #444;
+  border: 1px solid #ccc;
+  /* background:#DDD; */
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  vertical-align: middle;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+  color: rgb(0, 112, 210);
+}
+.buttonNew:active {
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+.buttonImport {
+  /* margin-right: 20pc; */
+  display: inline-block;
+  color: #444;
+  border: 1px solid #ccc;
+  /* background:#DDD; */
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  vertical-align: middle;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+  color: rgb(0, 112, 210);
+}
+.buttonImport:active {
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+
+.buttonAddCampaign {
+  /* margin-right: 20pc; */
+  display: inline-block;
+  color: #444;
+  border: 1px solid #ccc;
+  /* background:#DDD; */
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  vertical-align: middle;
+  width: 125px;
+  padding: 5px;
+  text-align: center;
+  color: rgb(0, 112, 210);
+}
+.buttonAddCampaign:active {
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+
+.buttonHeader {
+  margin-right: 50px;
+}
+.modal-title {
+  font-weight: 300;
+  line-height: 1.25;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.extra-pad {
+  padding: 1.875rem 1rem 1rem 1rem;
+}
+.slds-section__title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.875rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: rgb(243, 242, 242);
+}

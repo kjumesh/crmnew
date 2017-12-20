@@ -1,0 +1,100 @@
+<!--Assest Page-->
+
+
+<div class="buttonHeader pull-right">
+  <div class="buttonNew" (click)="open(content)">New</div>
+  <!-- <div class="buttonImport">Import</div> -->
+</div>
+<p>&nbsp;</p>
+<!--*****Assest Table***** -->
+<b>Assets</b>
+
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+
+<pagination class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize"
+  [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
+</pagination>
+
+<!--*****Assest Starts******-->
+<ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+  <div class="close-btn-container pos-abs">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">New Assest</h4>
+  </div>
+  <div class="modal-body">
+    <div class="extra-pad">
+      <div class="">
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Asset Name</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Status</label>
+          <select class="form-control" id="status" name="status">
+            <option value="">--None--</option>
+            <option value="Purchased">Purchased</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Installed">Installed</option>
+            <option value="Registered">Registered</option>
+            <option value="Obsolete">Obsolete</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Product</label>
+          <input type="textbox" class="form-control" placeholder="Search Products..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Price</label>
+          <input type="textbox" class="form-control">
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Account</label>
+          <input type="textbox" class="form-control" placeholder="Search Accounts..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Quantity</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Contact</label>
+          <input type="textbox" class="form-control"placeholder="Search Contacts..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Purchase Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Install Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <label for="name">Usage End Date</label>
+            <input type="textbox" class="form-control">
+          </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <label for="name">Competitor Asset</label>
+            <input type="checkbox">
+          </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Serial Number</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="btnSave">
+      <i class="fa fa-check-circle"></i>Save</button>
+    <button type="button" class="btn btn-default" id="btnCancel" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>

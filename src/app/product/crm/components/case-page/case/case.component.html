@@ -1,0 +1,124 @@
+<!--Cases Page-->
+
+<div class="buttonHeader pull-right">
+  <div class="buttonNew" (click)="open(content)">New</div>
+  <!-- <div class="buttonImport">Import</div> -->
+</div>
+<p>&nbsp;</p>
+<b>Case</b>
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize"
+  [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
+</pagination>
+
+<!--********Cases Starts*********-->
+<ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+  <div class="close-btn-container pos-abs">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">New Case</h4>
+  </div>
+  <div class="modal-body">
+    <div class="extra-pad">
+      <div class="">
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Case Owner</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Contact Name</label>
+          <input type="textbox" class="form-control" placeholder="Search Contact..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Account Name</label>
+          <input type="textbox" class="form-control" placeholder="Search Accounts.. ">
+        </div>
+        <b class="pull-left">Additional Information</b>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Status</label>
+          <select class="form-control" id="status" name="status">
+            <option value="">--None--</option>
+            <option value="OnHold">On Hold</option>
+            <option value="Escalated">Escalated</option>
+            <option value="Closed">Closed</option>
+            <option value="New">New</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Type</label>
+          <select class="form-control" id="type" name="type">
+            <option value="">--None--</option>
+            <option value="Problem">Problem</option>
+            <option value="Feature Request">Feature Request</option>
+            <option value="Question">Question</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Case Origin</label>
+          <select class="form-control" id="caseorigin" name="caseorigin">
+            <option value="">--None--</option>
+            <option value="Email">Email</option>
+            <option value="Phone">Phone</option>
+            <option value="Web">Web</option>
+          </select>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Case Reason</label>
+          <select class="form-control" id="caseorigin" name="caseorigin">
+            <option value="">--None--</option>
+            <option value="Userdidn'tattendTraining">User didn't attend Training</option>
+            <option value="ComplexFunctionality">Complex Functionality</option>
+            <option value="ExisitingProblem">Exisiting Problem</option>
+            <option value="InstructionNotClear">Instruction Not Clear</option>
+            <option value="NewProblem">New Problem</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Priority</label>
+          <select class="form-control" id="caseorigin" name="caseorigin">
+            <option value="">--None--</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <b class="pull-left">Description Information</b><br>
+          <label for="name">Subject</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+       <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <b class="pull-left">Web Information</b><br>
+          <label for="name">Web Email</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Web Company</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Web Name</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Web Phone</label>
+          <input type="textbox" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="btnSave">
+      <i class="fa fa-check-circle"></i>Save</button>
+    <button type="button" class="btn btn-default" id="btnCancel" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>

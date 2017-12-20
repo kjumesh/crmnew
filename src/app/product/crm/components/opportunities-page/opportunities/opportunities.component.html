@@ -1,0 +1,138 @@
+<!--Opportunity Page-->
+
+
+<div class="buttonHeader pull-right">
+  <div class="buttonNew" (click)="open(content)">New</div>
+  <!-- <div class="buttonImport">Import</div> -->
+</div>
+<p>&nbsp;</p>
+<b>Opportunity</b>
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize"
+  [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
+</pagination>
+
+<!--********Opportunity Starts*********-->
+<ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+  <div class="close-btn-container pos-abs">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">New Opportunity</h4>
+  </div>
+  <div class="modal-body">
+    <div class="extra-pad">
+      <div class="">
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Opportunity Name</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Opportunity Owner</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Account Name</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Close Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Type</label>
+          <select class="form-control" id="type" name="type">
+            <option value="">--None--</option>
+            <option value="ExistingBusiness">Existing Business</option>
+            <option value="NewBusiness">New Business</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Stage</label>
+          <select class="form-control" id="stage" name="stage">
+            <option value="">--None--</option>
+            <option value="Qualification">Qualification</option>
+            <option value="NeedsAnalysis">Needs Analysis</option>
+            <option value="Proposal">Proposal</option>
+            <option value="Negotiation">Negotiation</option>
+            <option value="Closewon">Closed Won</option>
+            <option value="CloseLost">Closed Lost</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Primary Campaign Source</label>
+          <input type="textbox" class="form-control" placeholder="Search Campaign..." >
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Probability(%)</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Amount</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Loss Reason</label>
+          <select class="form-control" id="lossReason" name="lossReason">
+            <option value="">--None--</option>
+            <option value="LostToCompetitor">Lost To Competitor</option>
+            <option value="NoBudget/Loss Funding">No Budget/Loss Funding</option>
+            <option value="No Decision/Non-Responsive">No Decision/Non-Responsive</option>
+            <option value="Price">Price</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Budget Confirmed</label>
+          <input type="checkbox">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Discovery Completed </label>
+          <input type="checkbox">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">ROI Analysis Completed</label>
+          <input type="checkbox">
+        </div>
+
+
+
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <b class="pull-left">Additional Information</b>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Next Step</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Lead Source</label>
+          <select class="form-control" id="leadSource" name="leadSource">
+            <option value="">--None--</option>
+            <option value="Advertisement">Advertisement</option>
+            <option value="CustomerEvent">CustomerEvent</option>
+            <option value="EmployeeReferral">Employee Referral</option>
+            <option value="GoogleAdsWords">Google AdsWords</option>
+            <option value="Other">Other</option>
+            <option value="Patner">Patner</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="btnSave">
+      <i class="fa fa-check-circle"></i>Save</button>
+    <button type="button" class="btn btn-default" id="btnCancel" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>

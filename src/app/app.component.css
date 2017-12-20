@@ -1,0 +1,19 @@
+a {
+  text-decoration: none;
+}
+a.logo {
+  display: inline-block;
+  padding: 10px 0px;
+}
+.nav-tabs {
+  border-bottom: 0px solid #ddd;
+}
+
+.main_header .nav a {
+  color: #616161;
+  font-size: 14px;
+}
+
+.main_header .nav-tabs {
+  border: 0px;
+}

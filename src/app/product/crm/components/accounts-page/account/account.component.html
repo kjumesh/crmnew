@@ -1,0 +1,168 @@
+<div class="buttonHeader pull-right">
+    <div class="buttonNew" (click)="open(content)">New</div>
+    <div class="buttonImport">Import</div>
+</div>
+<p>&nbsp;</p>
+<b>Accounts</b>
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize"
+    [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
+</pagination>
+
+<!--Account Starts-->
+<ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+    <div class="close-btn-container pos-abs">
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-header">
+        <h4 class="modal-title text-center">New Account</h4>
+    </div>
+    <div class="modal-body">
+        <div class="extra-pad">
+            <div class="">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Account Name</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Account Owner</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Type</label>
+                    <select class="form-control" id="Industry" name="Industry">
+                        <option value="">--None--</option>
+                        <option value="Analyst">Analyst</option>
+                        <option value="Competitor">Competitor</option>
+                        <option value="Customer">Customer</option>
+                        <option value="Integrator">Integrator</option>
+                        <option value="Investor">Investor</option>
+                        <option value="Partner">Partner</option>
+                        <option value="Press">Press</option>
+                        <option value="Prospect">Prospect</option>
+                        <option value="Reseller">Reseller</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Parent Account</label>
+                    <input type="textbox" class="form-control" placeholder="Search Accounts">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Website</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Phone</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Industry</label>
+                    <select class="form-control" id="Industry" name="Industry">
+                        <option value="">--None--</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Apparel">Apparel</option>
+                        <option value="Banking">Banking</option>
+                        <option value="Biotechnology">BioTechnology</option>
+                        <option value="Chemicals">Chemicals</option>
+                        <option value="Communications">Communications</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Consulting">Consulting</option>
+                        <option value="Education">Education</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Environment">Environment</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Food&Bevrages">Food & Beverages</option>
+                        <option value="Governement">Governement</option>
+                        <option value="HealthCare">HealthCare</option>
+                        <option value="Hospitality">Hospitality</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Machinery">Machinary</option>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Media">Media</option>
+                        <option value="Other">Other</option>
+                        <option value="NotForProfit">Not For Profit</option>
+                        <option value="Recreation">Recreation</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Shipping">Shipping</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Telecommunications">Manufacturing</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Utilities">Utilities</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Employee</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Description</label>
+                    <textarea class="form-control" id="Description" rows="3"></textarea>
+                </div>
+                <b>Address Information</b>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label for="name">Billing Address</label>
+                        <input type="textbox" class="form-control" placeholder="Search Address">
+                    </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing Street</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing City</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing State/Province</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing ZipCode/Postal Code</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Billing Country</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label for="name">Shipping Address</label>
+                        <input type="textbox" class="form-control" placeholder="Search Address">
+                    </div>
+                <div class="form-group col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <label for="name">Shipping Street</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping City</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <p>&nbsp;</p>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping State/Province</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping ZipCode/Postal Code</label>
+                    <input type="textbox" class="form-control">
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="name">Shipping Country</label>
+                    <input type="textbox" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btnSave">
+            <i class="fa fa-check-circle"></i>Save</button>
+        <button type="button" class="btn btn-default" id="btnCancel" (click)="c('Close click')">Cancel</button>
+    </div>
+</ng-template>

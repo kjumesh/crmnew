@@ -1,0 +1,87 @@
+<div class="buttonHeader pull-right">
+  <div class="buttonNew" (click)="open(content)">New</div>
+  <!-- <div class="buttonImport">Import</div> -->
+</div>
+<p>&nbsp;</p>
+<b>Campaign</b>
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize"
+  [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
+</pagination>
+
+<!--Campaign Starts-->
+<ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+  <div class="close-btn-container pos-abs">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">New Campaign</h4>
+  </div>
+  <div class="modal-body">
+    <div class="extra-pad">
+      <div class="">
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Campaign Name</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Campaign Owner</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Parent Campaign</label>
+          <input type="textbox" class="form-control" placeholder="Search Campaigns..">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Status</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Start Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">End Date</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Type</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <b>Planning</b><br>
+          <label for="name">Num Sent in Campaign</label>
+          <input type="textbox" class="form-control" placeholder="0">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Budgeted Cost in Campaign</label>
+          <input type="textbox" class="form-control"placeholder="0.00%">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Expected Response (%)</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Actual Cost in Campaign</label>
+          <input type="textbox" class="form-control">
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="name">Expected Revenue in Campaign</label>
+          <input type="textbox" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="btnSave">
+      <i class="fa fa-check-circle"></i>Save</button>
+    <button type="button" class="btn btn-default" id="btnCancel" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>
