@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
@@ -57,7 +58,8 @@ import { Ng2GoogleChartsModule } from "ng2-google-charts/google-charts.module";
     FormsModule,
     PaginationModule.forRoot(),
     Ng2GoogleChartsModule,
-    Ng2TableModule
+    Ng2TableModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: []

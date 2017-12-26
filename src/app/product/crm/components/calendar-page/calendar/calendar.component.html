@@ -1,3 +1,59 @@
-<p>
-  calendar works!
-</p>
+<div class="col-ls-12">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3>{{months[firstday.getMonth()]+' '+firstday.getDate()+', '+firstday.getFullYear()+' - '+months[lastday.getMonth()]+' '+lastday.getDate()+', '+lastday.getFullYear() }}</h3></div>
+      <div class="panel-body scrolltable">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>GMT −8</th>
+              <th *ngFor="let dateval of datesarr; let i = index; ">{{ dateval.name+" "+dateval.no }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hrs of dayhrs">
+              <td *ngIf="hrs.is_row" rowspan="2" style="vertical-align: inherit;">{{ hrs.text }}</td>
+              <td *ngFor="let dateval of datesarr; let i = index; " [ngClass]="(dateval.today)?'active':'none'" (click)="open(content)"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="1" [firstDayOfWeek]="7" [dayTemplate]="t">
+    </ngb-datepicker>
+    
+    <ng-template #t let-date="date" let-focused="focused">
+      <span class="custom-day"
+            [class.focused]="focused"
+            [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+            [class.faded]="isHovered(date) || isInside(date)"
+            (mouseenter)="hoveredDate = date"
+            (mouseleave)="hoveredDate = null">
+        {{ date.day }}
+      </span>
+    </ng-template>   
+  </div>
+
+  <!-- model -->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">New Event</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Event body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-dark" (click)="close()">save</button>
+    </div>
+  </ng-template>
+
+<hr>
+</div>
+
+
