@@ -11,9 +11,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let hrs of dayhrs">
+            <tr *ngFor="let hrs of dayhrs; let hindex = index; ">
               <td *ngIf="hrs.is_row" rowspan="2" style="vertical-align: inherit;">{{ hrs.text }}</td>
-              <td *ngFor="let dateval of datesarr; let i = index; " [ngClass]="(dateval.today)?'active':'none'" (click)="open(content)"></td>
+              <td *ngFor="let dateval of datesarr; let dindex = index; " [ngClass]="(dateval.today)?'active':'none'" (click)="open(content,hrs.text,dateval.setdate,hindex+2,dindex)" [ngStyle]="changeBackground(dateval.setdate)" [attr.rowspan]=getrowspan(hrs.text,dateval.setdate)>{{ getdescription(hrs.text,dateval.setdate) }}</td>
             </tr>
           </tbody>
         </table>
@@ -37,7 +37,7 @@
   </div>
 
   <!-- model -->
-  <ng-template #content let-c="close" let-d="dismiss">
+  <!-- <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">New Event</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -50,6 +50,101 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
       <button type="button" class="btn btn-outline-dark" (click)="close()">save</button>
+    </div>
+  </ng-template> -->
+  <ng-template #content let-c="close" let-d="dismiss" style="pos-rel">
+    <div class="close-btn-container pos-abs">
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-header">
+        <h4 class="modal-title text-center">New Event</h4>
+    </div>
+    <div class="modal-body">
+        <div class="extra-pad">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <label for="name"><span class="text-danger">*</span>Subject</label>
+                  <input type="textbox" class="form-control">
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <label for="name"><span class="text-danger">*</span>Assigned To</label>
+                  <input type="textbox" class="form-control">
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <label for="name">Location</label>
+                  <input type="textbox" class="form-control">
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <p  class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="text-danger">*</span>Start</p>
+              <div class="form-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <label for="name">Date</label>
+                  <!-- <input type="textbox" class="form-control"> -->
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="startdate" ngbDatepicker #sdate="ngbDatepicker" (click)="sdate.toggle()">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary"  (click)="sdate.toggle()" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <label for="name">Time</label>
+                  <select class="form-control" [(ngModel)]="starttime">
+                    <option *ngFor="let hrs of dayhrs"> {{ hrs.text }}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <p class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="text-danger">*</span>End</p>
+              <div class="form-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <label for="name">Date</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="enddate" ngbDatepicker #edate="ngbDatepicker" (click)="edate.toggle()">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary"  (click)="edate.toggle()" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <label for="name">Time</label>
+                  <select class="form-control" [(ngModel)]="endtime">
+                    <option *ngFor="let hrs of dayhrs"> {{ hrs.text }}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <label for="name">All-Day Event</label>
+                  <input type="checkbox" class="form-control">
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <label for="name">Type</label>
+                  <select class="form-control">
+                    <option value="None">--None--</option>
+                    <option value="Agriculture">Email</option>
+                    <option value="Apparel">Meeting</option>
+                    <option value="Banking">Other</option>
+                    <option value="Biotechnology">Call</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <label for="name">Description</label>
+                 <textarea class="form-control"></textarea>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" id="btnCancel" (click)="close()">Cancel</button>
+      <button type="button" class="btn btn-primary" id="btnSave"><i class="fa fa-check-circle"></i>Save</button>
     </div>
   </ng-template>
 

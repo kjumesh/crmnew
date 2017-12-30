@@ -23,3 +23,6 @@
   .scrolltable td{
     cursor: pointer;
   }
+.date_head{
+  width: 12.5%;
+}

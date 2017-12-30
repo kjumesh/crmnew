@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbDateStruct, NgbCalendar, NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { CalendarService } from '../../../services/calendar/calendar-service';
+
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
   one && two && two.year === one.year && two.month === one.month && two.day === one.day;
 
@@ -14,13 +16,23 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css'],
+  providers: [CalendarService]
 })
 export class CalendarComponent implements OnInit {
   closeResult: string;
   modalReference: any;
   firstday;
   lastday;
+  startdate;
+  starttime;
+  enddate;
+  endtime;
+  rowdate;
+  rowmonth;
+  calenderdata;
+  startarr = [];
+  endarr = [];
   hoveredDate: NgbDateStruct;
   fromDate: NgbDateStruct;
   toDate: NgbDateStruct;
@@ -29,8 +41,20 @@ export class CalendarComponent implements OnInit {
   datesarr = [];
   hrs = [12,1,2,3,4,5,6,7,8,9,10,11];
   dayhrs = [];
-
-  constructor(calendar: NgbCalendar, private modalService: NgbModal) {
+  events=[];
+  constructor(calendar: NgbCalendar, private modalService: NgbModal, private calendarService: CalendarService) {
+    calendarService.getCalenderdata().subscribe(calenderdata => {
+       this.calenderdata = calenderdata.data;
+       for (let d of calenderdata.data) {
+          this.startarr.push(d.date+d.start_time);
+          this.endarr.push(d.date+d.end_time);
+        }
+        });
+    this.events["2017-12-26"] = [];
+    this.events["2017-12-26"]["12:30am"] = "fdfd";
+    this.events["2017-12-27"] = [];
+    this.events["2017-12-27"]["9am"] = "fdfd";
+    console.log(this.events);
     this.getweekdays(new Date());
     for (var i = 0; i < this.hrs.length; i++) {
       this.dayhrs.push({text:this.hrs[i]+"am",is_row:true});
@@ -58,10 +82,13 @@ export class CalendarComponent implements OnInit {
     let nowyear = this.firstday.getFullYear();
     for(let i=0;i<7;i++){
       if(todaymonth == nowmonth && todayyear == nowyear && todaydate == (this.firstday.getDate()+i)){
-        this.datesarr.push({name:this.days[this.firstday.getDay()+i], no:this.firstday.getDate()+i, today:true});
+        this.datesarr.push({name:this.days[this.firstday.getDay()], no:this.firstday.getDate(),setdate:{year: this.firstday.getFullYear(), month: this.firstday.getMonth() + 1, day: this.firstday.getDate()}, today:true});
       }else
-        this.datesarr.push({name:this.days[this.firstday.getDay()+i], no:this.firstday.getDate()+i});
+        this.datesarr.push({name:this.days[this.firstday.getDay()], no:this.firstday.getDate(),setdate:{year: this.firstday.getFullYear(), month: this.firstday.getMonth() + 1, day: this.firstday.getDate()}});
+      this.firstday.setDate(this.firstday.getDate() + 1);
     }
+    console.log(this.datesarr)
+    console.log(this.dayhrs)
   }
   onDateChange(date: NgbDateStruct) {
     this.getweekdays(new Date(date.year,date.month-1,date.day));
@@ -77,10 +104,43 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
   }
-  open(content) {
+  open(content,desc,dateval, hindex,dindex) {
+    this.startdate = dateval;
+    this.starttime = desc;
+    this.enddate = this.datesarr[dindex].setdate;
+    this.endtime = this.dayhrs[hindex].text;
     this.modalReference = this.modalService.open(content,{ size: 'lg'});
   }
   close(content) {
     this.modalReference.close();
   }
+  getrowspan(text,obj){
+    if (this.startarr.indexOf(obj.year+'-'+obj.month+'-'+obj.day+text) != -1){
+      this.rowdate = obj.day;
+      this.rowmonth = obj.month;
+      return 2;
+    }
+    else
+      return 0;
+  }
+  getdescription(text,obj){
+    let i = this.startarr.indexOf(obj.year+'-'+obj.month+'-'+obj.day+text);
+    if (i != -1){
+      console.log(this.calenderdata[i]);
+      return this.calenderdata[i].description;
+    }
+    else
+    //   return null;
+  return '';
+  }
+  changeBackground(obj): any {
+    if(this.rowdate == obj.day && this.rowmonth == obj.month){
+      this.rowdate = null;
+      this.rowmonth = null;
+      return { 'display': 'none' };
+    }else{
+      return null;
+    }
+    
+}
 }
